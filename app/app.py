@@ -1,6 +1,5 @@
 import os
 from bottle import route, run, template, TEMPLATE_PATH, static_file
-# import MainController
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
 views_path = dir_path + '/views'
@@ -13,8 +12,6 @@ def home():
 
 @route('/result', method='POST')
 def result():
-    #main_controller = MainController()
-    #main_controller.hello()
     return template(views_path + '/result.html')
 
 @route('/<filename:path>')
