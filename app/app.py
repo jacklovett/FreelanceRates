@@ -10,7 +10,8 @@ TEMPLATE_PATH.insert(0, views_path)
 def home(): 
     return template(views_path + '/index.html') 
 
-@route('/result', method='POST')
+# Replace with @route('/result', method='POST') when ready to do post
+@route('/result')
 def result():
     return template(views_path + '/result.html')
 

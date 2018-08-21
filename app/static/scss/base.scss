@@ -38,8 +38,9 @@ a {
 }     
        	
 .intro {
- text-align: center;
- padding: 10px 50px;
+	text-align: center;
+	padding: 10px;
+	width: 50%;
 } 	        
       
 form {
@@ -53,13 +54,13 @@ form {
 }
 
 @media (max-width:767px) {
-	form{
+	form, .intro{
 		width: 75%
 	}
 }
 
 @media (max-width: 479px) {
-	form {
+	form, .intro {
 		width: 100%;
 	}
 } 
@@ -84,3 +85,6 @@ form {
 	}
 }
 
+.footer-container {
+	padding: 5px;
+}
