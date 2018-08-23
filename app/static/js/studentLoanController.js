@@ -4,7 +4,7 @@ window.onload = studentLoanController();
 function studentLoanController() {
 	try	{
 		var row = document.getElementById("row");
-		var planToggle = document.querySelector("input[name=plan-toggle]");
+		var planToggle = document.querySelector("input[name=plan_toggle]");
 		    	
 		planToggle.onchange = function() {
 			if(this.checked)
