@@ -1,8 +1,16 @@
-import os
+import os, sys
 from bottle import route, run, template, TEMPLATE_PATH, static_file
+from bottle import request, post
+
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
+
+# location paths
 views_path = dir_path + '/views'
+controllers_path = dir_path + '/controllers'
+
+sys.path.insert(0, controllers_path + '/mainController.py')
+import MainController
 
 TEMPLATE_PATH.insert(0, views_path)
 
@@ -10,9 +18,11 @@ TEMPLATE_PATH.insert(0, views_path)
 def home(): 
     return template(views_path + '/index.html') 
 
-# Replace with @route('/result', method='POST') when ready to do post
-@route('/result')
-def result():
+# pylint: disable=no-member
+@route('/result', method='POST')
+def result():       
+    main_controller = MainController(request.forms)
+    main_controller.calc_result()   
     return template(views_path + '/result.html')
 
 @route('/<filename:path>')
