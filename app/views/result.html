@@ -2,11 +2,14 @@
 <div id="content"> 
     <section class="container intro">
         <h1>Results</h1>
+        <h3>{{response.get('desired_salary')}}</h3>
+        <h3>{{response.get('billable_hours')}}</h3>
+        <h3>{{response.get('time_off')}}</h3>
+        <h3>{{response.get('student_loan_plan')}}</h3>
     </section>    
     <section class="container">   
         <div class="button-container">	
             <input type="button" onclick="history.back()" class="button" value="Go Back" />
         </div>     
-    </section>
-    
+    </section>    
 </div>
