@@ -1,2 +1,4 @@
 
 *.pyc
+app/static/css/base.css.map
+app/static/.sass-cache/a5dae4281d216bce713480eb681fba5b57e12d46/base.scssc
