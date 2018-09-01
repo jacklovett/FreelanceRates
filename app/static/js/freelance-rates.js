@@ -5,16 +5,16 @@ function freelanceRates() {
 	
 	var showInfoView = false;
 		
-	var planRow = document.getElementById("plan_row");
-	var planInfoRow = document.getElementById("plan_info_row");
-	var planToggle = document.querySelector("input[name=plan_toggle]");
-	var planInfoToggle = document.getElementById("plan_info_toggle");
+	var planRow = document.getElementById("plan-row");
+	var planInfoRow = document.getElementById("plan-info-row");
+	var hasStudentLoan = document.querySelector("input[name=has-student-loan]");
+	var planInfoToggle = document.getElementById("plan-info-toggle");
 	// radio buttons
-	var plan1 = document.getElementById("plan_1");
-	var plan2 = document.getElementById("plan_2");
+	var plan1 = document.getElementById("plan-1");
+	var plan2 = document.getElementById("plan-2");
 							
 	// plan display toggle
-	planToggle.onchange = function() {
+	hasStudentLoan.onchange = function() {
 		if(this.checked) {
 			plan1.checked = true;
 			planRow.style.display = "";

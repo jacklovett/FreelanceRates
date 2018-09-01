@@ -1,15 +1,17 @@
 % rebase('base.html')
 <div id="content"> 
-    <section class="container intro">
-        <h1>Results</h1>
-        <h3>{{response.get('desired_salary')}}</h3>
-        <h3>{{response.get('billable_hours')}}</h3>
-        <h3>{{response.get('time_off')}}</h3>
-        <h3>{{response.get('student_loan_plan')}}</h3>
-    </section>    
-    <section class="container">   
+    <section class="container content">        
+        <h2>Results</h1>
+        <h3>{{response.get('salary')}}</h3>
+        <h3>{{response.get('billable-hours')}}</h3>
+        <h3>{{response.get('time-off')}}</h3>
+        % if response.get('has-student-loan'):
+            <h3>Student Loan Repayments</h3>
+            <p>Since you are on plan {{response.get('student-loan-plan')}}, you should be repaying
+            £{{response.get('student-loan-repayments')}} per month towards your student loan.</p>
+        % end         
         <div class="button-container">	
             <input type="button" onclick="history.back()" class="button" value="Go Back" />
-        </div>     
-    </section>    
+        </div>         
+    </section>       
 </div>
