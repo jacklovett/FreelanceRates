@@ -36,12 +36,15 @@ html, body {
 a {
 	text-decoration: none;
 }     
-       	
-.intro {
-	text-align: center;
-	padding: 10px;
+		   
+.content {
 	width: 50%;
-} 	        
+	padding: 10px;
+	
+	.intro {
+		text-align: center;		
+	}
+}
       
 form {
   width: 50%; 
@@ -54,13 +57,13 @@ form {
 }
 
 @media (max-width:767px) {
-	form, .intro{
+	form, .content{
 		width: 75%
 	}
 }
 
 @media (max-width: 479px) {
-	form, .intro {
+	form, .content {
 		width: 100%;
 	}
 } 
@@ -92,6 +95,3 @@ form {
     outline: 0;
 }
 
-.footer-container {
-	padding: 5px;
-}

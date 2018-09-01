@@ -1,13 +1,15 @@
 # Student Loan Repayment Class
-class student_loan_model():    
-    def __init__(self, salary, plan):
-        self.salary = salary 
-        self.plan = plan
-        self.repayment_amount = self.set_repayment() 
-  
-    def set_repayment(self):
-        if  self.plan == 1:
-            payment_free_amount = 17775
-            return (self.salary - payment_free_amount) * 0.09
-        else:
-            return 100 # look into plan 2 calculation
+class StudentLoanModel():    
+    
+    payment_plan1_threshold = 18330
+    payment_plan2_threshold = 25000
+            
+    def get_repayment_amount(self, salary, plan):
+        try: 
+            payment_free_amount = self.payment_plan1_threshold
+            if plan == 2:
+                payment_free_amount = self.payment_plan2_threshold 
+            repayment_amount = int(((salary - payment_free_amount) * 0.09) / 12)
+        except:
+            print('A problem occured when calculating repayment amount for plan '+ plan)
+        return repayment_amount
