@@ -21,7 +21,8 @@ class MainController():
         if self.has_student_loan:
             student_loan_model = StudentLoanModel()
             result['student-loan-plan'] = self.plan
-            result['student-loan-repayments'] = student_loan_model.get_repayment_amount(self.salary, self.plan)
+            result['payment_free_amount'] = student_loan_model.get_payment_free_amount(self.plan)
+            result['student-loan-repayments'] = student_loan_model.calc_repayments(self.salary, self.plan)
 
         return result
 

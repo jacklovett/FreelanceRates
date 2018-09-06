@@ -5,10 +5,17 @@
         <h3>{{response.get('salary')}}</h3>
         <h3>{{response.get('billable-hours')}}</h3>
         <h3>{{response.get('time-off')}}</h3>
+        <!-- Can these html sections be %included in and still work? -->
         % if response.get('has-student-loan'):
             <h3>Student Loan Repayments</h3>
-            <p>Since you are on plan {{response.get('student-loan-plan')}}, you should be repaying
-            £{{response.get('student-loan-repayments')}} per month towards your student loan.</p>
+            % if response.get('student-loan-repayments') == 0:
+                <p>The minimum threshold for plan {{response.get('student-loan-plan')}} is £{{response.get('payment_free_amount')}}.
+                    Therefore, since the salary you want is not greater than this, you would not need to make any repayments.
+                </p>
+            % else:
+                <p>Since you are on plan {{response.get('student-loan-plan')}}, you should be repaying
+                £{{response.get('student-loan-repayments')}} per month towards your student loan.</p>
+            % end
         % end         
         <div class="button-container">	
             <input type="button" onclick="history.back()" class="button" value="Go Back" />
