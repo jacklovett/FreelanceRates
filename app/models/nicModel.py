@@ -4,7 +4,6 @@ class NicModel():
     #Thresholds
     lower_threshold = 6025
     higher_threshold = 8164
-
     # For class 2
     per_week_value = 2.85
 
