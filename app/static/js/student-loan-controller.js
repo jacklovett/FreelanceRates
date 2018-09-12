@@ -1,7 +1,7 @@
 	
-window.onload = freelanceRates();
+window.onload = studentLoanController();
 
-function freelanceRates() {
+function studentLoanController() {
 	
 	var showInfoView = false;
 		
@@ -15,22 +15,30 @@ function freelanceRates() {
 							
 	// plan display toggle
 	hasStudentLoan.onchange = function() {
-		if(this.checked) {
-			plan1.checked = true;
-			planRow.style.display = "";
-		}else {
-			planRow.style.display = "none";
-			plan1.checked, plan2.checked = false;			
-		} 		
+		try {
+			if(this.checked) {
+				plan1.checked = true;
+				planRow.style.display = "";
+			}else {
+				planRow.style.display = "none";
+				plan1.checked, plan2.checked = false;			
+			} 	
+		} catch (error) {
+			console.log(error);
+		}	
 	};
 
 	// plan info display toggle
 	planInfoToggle.onclick = function() {
-		showInfoView = !showInfoView
-		if(showInfoView) 
-			planInfoRow.style.display = "";
-		else 
-			planInfoRow.style.display = "none";	
+		try {
+			showInfoView = !showInfoView
+			if(showInfoView) 
+				planInfoRow.style.display = "";
+			else 
+				planInfoRow.style.display = "none";	
+		} catch (error) {
+			console.log(error);
+		}
 	}
 		
 	// plan1 radio switch

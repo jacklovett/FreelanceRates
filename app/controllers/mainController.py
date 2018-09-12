@@ -19,18 +19,15 @@ class MainController():
         self.result['billable-hours'] = self.billable_hours
         self.result['time-off'] = self.time_off
 
-        # determine this from salary - tax amount ??
-        self.calc_tax_results()
-        profit = 0
+        tax_model = TaxModel(self.salary)
+        profit = tax_model.get_income_after_tax() 
         self.calc_nic_results(profit)
        
         if self.has_student_loan:
             self.calc_student_loan_results()
 
         return self.result
-
-    def calc_tax_results(self):
-        tax_model = TaxModel()
+       
     
     def calc_nic_results(self, profit):
         nic_model = NicModel(profit)
