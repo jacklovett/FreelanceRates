@@ -1,20 +1,30 @@
 % rebase('base.html')
 <div id="content"> 
     <section class="container content">        
-        <h2>Results</h1>
+        <h2>Results</h2>
         <h3>{{response.get('salary')}}</h3>
         <h3>{{response.get('billable-hours')}}</h3>
         <h3>{{response.get('time-off')}}</h3>
+        <h3>Tax</h3>
+        <p>
+            With a salary of <span class="currency">{{response.get('salary')}}</span>
+        </p>
+        <h3>National Insurance Contributions</h3>
+        <p>
+            With this amount of profit you will be on national insurance class {{response.get('nic_class')}}.
+            This means you will have to pay <span class="currency">{{response.get('nic_amount')}}</span> in National Insurance.
+        </p>
         <!-- Can these html sections be %included in and still work? -->
         % if response.get('has-student-loan'):
             <h3>Student Loan Repayments</h3>
             % if response.get('student-loan-repayments') == 0:
-                <p>The minimum threshold for plan {{response.get('student-loan-plan')}} is £{{response.get('payment_free_amount')}}.
+                <p>The minimum threshold for plan {{response.get('student-loan-plan')}} is 
+                    <span class="currency">{{response.get('payment_free_amount')}}</span>
                     Therefore, since the salary you want is not greater than this, you would not need to make any repayments.
                 </p>
             % else:
                 <p>Since you are on plan {{response.get('student-loan-plan')}}, you should be repaying
-                £{{response.get('student-loan-repayments')}} per month towards your student loan.</p>
+                    <span class="currency">{{response.get('student-loan-repayments')}}</span> per month towards your student loan.</p>
             % end
         % end         
         <div class="button-container">	
