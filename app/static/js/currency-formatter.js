@@ -1,27 +1,32 @@
-window.onload = currencyFormatter();
-
-function currencyFormatter() {
-    // edit so that this also works with focus on salary input field
     const formatter = new Intl.NumberFormat('en-GB', {
         style: 'currency',
         currency: 'GBP',
         minimumFractionDigits: 2
-      });
-
-    var currencyElements = document.getElementsByClassName('currency');
+    });    
+        
+    var formatTextCurrency = function() {
+        var currencyElements = document.getElementsByClassName('currency');
+        for(var i=0; i<currencyElements.length; i++) {
+            currencyElements[i].innerHTML = formatCurrency(currencyElements[i].innerHTML);
+        }
+    }
     
-    var formatCurrency = function(currency){
+    var formatCurrency = function(value){
         try {
-            currencyValue = currency.innerHTML;
-            if(currencyValue != "") 
-                currency.innerHTML = formatter.format(currencyValue);
+            if(value) 
+                return formatter.format(value);
         } catch (error) {
             console.log(error);
         }
     } 
 
-    for(var i=0; i<currencyElements.length; i++) {
-        formatCurrency(currencyElements[i]);
-    }
+    var formatInputCurrency = function() {
+        try {    
+            var currencyInput = document.querySelector("input[name=salary]");
+            currencyInput.value = formatCurrency(currencyInput.value);
+        } catch (error) {
+            console.log(error);
+        }    
+    }; 
 
-};
+ window.onload = formatTextCurrency();
