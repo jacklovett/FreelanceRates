@@ -9,17 +9,16 @@ class NicModel():
     per_week_value = 2.95
 
     def __init__(self, profit):
-        self.profit = profit
-        self.nic_class = self.set_nic_class()         
+        self.profit = profit        
 
-    def set_nic_class(self):
+    def get_nic_class(self):
         if self.class2_threshold <= self.profit <= self.class4_threshold:
-            self.nic_class = 2
+            return 2
         else:
-            self.nic_class = 4
+            return 4
     
     def get_nic_amount(self):
-        if self.nic_class == 2:
+        if self.get_nic_class == 2:
             return self.get_class2_amount()       
         return self.get_class4_amount()
     
@@ -31,6 +30,5 @@ class NicModel():
             amount_above_higher_threshold = (self.profit - self.class4_higher_threshold) * 0.02
             amount_below_higher_threshold = (self.class4_higher_threshold - self.class4_threshold) * 0.09
             return amount_below_higher_threshold + amount_above_higher_threshold            
-        return (self.profit - self.class4_threshold) * 0.09
-        
+        return (self.profit - self.class4_threshold) * 0.09       
 

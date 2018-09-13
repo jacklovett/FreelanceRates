@@ -31,7 +31,7 @@ class MainController():
     
     def calc_nic_results(self, profit):
         nic_model = NicModel(profit)
-        self.result['nic_class'] = nic_model.nic_class
+        self.result['nic_class'] = nic_model.get_nic_class()
         self.result['nic_amount'] = nic_model.get_nic_amount()
 
     def calc_student_loan_results(self):

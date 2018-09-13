@@ -9,8 +9,7 @@ class TaxModel():
     def __init__(self, salary):
         self.salary = salary       
         self.taxable_income = self.get_taxable_income()
-        self.tax_amount = self.get_tax_amount()
-        self.income_after_tax = self.get_income_after_tax()               
+        self.tax_amount = self.get_tax_amount()             
                
     def basic_rate(self):
         if self.taxable_income < self.basic:
