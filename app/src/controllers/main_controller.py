@@ -1,6 +1,6 @@
-from taxModel import TaxModel
-from nicModel import NicModel
-from studentLoanModel import StudentLoanModel
+from tax_model import TaxModel
+from nic_model import NicModel
+from student_loan_model import StudentLoanModel
 
 class MainController():   
     

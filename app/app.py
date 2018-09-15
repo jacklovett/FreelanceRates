@@ -3,21 +3,21 @@ from bottle import route, run
 from bottle import request, post
 from bottle import template, TEMPLATE_PATH, static_file
 
-path = os.path.abspath(__file__)
-dir_path = os.path.dirname(path)
-SYSTEM_PATH = sys.path
-
+dir_path = os.path.dirname(os.path.abspath(__file__))
 # location paths
-views_path = dir_path + '/views'
-controllers_path = dir_path + '/controllers'
-models_path = dir_path + '/models'
+src_path = dir_path + '\\src'
+test_path = dir_path + '\\test'
+views_path = dir_path + '\\views'
 
 TEMPLATE_PATH.insert(0, views_path)
-SYSTEM_PATH.insert(0, controllers_path)
-SYSTEM_PATH.insert(0, models_path)
 
-from requestModel import RequestModel
-from mainController import MainController
+sys.path.insert(0, src_path + '\\models')
+sys.path.insert(0, test_path + '\\models')
+sys.path.insert(0, src_path + '\\controllers')
+sys.path.insert(0, test_path + '\\controllers')
+
+from request_model import RequestModel
+from main_controller import MainController
 
 @route('/')
 def home(): 
