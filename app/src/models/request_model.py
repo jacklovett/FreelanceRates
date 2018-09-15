@@ -1,4 +1,3 @@
-
 import re
 class RequestModel():
     def __init__(self, form):
@@ -13,9 +12,9 @@ class RequestModel():
         Method that removes currency formatting 
         to leave only the float value
         """
-        inputSalary = form.get('salary')
-        regex = re.compile(r'[^0-9.]+')
-        salary = regex.sub('', inputSalary)
+        input_salary = form.get('salary')
+        regex_check = re.compile(r'[^0-9.]+')
+        salary = regex_check.sub('', input_salary)
         return float(salary)
 
 
