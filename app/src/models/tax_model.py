@@ -1,21 +1,21 @@
 # Tax Class
 class TaxModel():
-
+    """
+    Why am i using models? They should be controllers instead
+    remove models folder and only use controllers
+    """
     tax_free_amount = 11500
     # Boundaries
     basic = 33500
     higher = 150000
 
     def __init__(self, salary):
-        self.salary = salary       
+        self.salary = salary   
         self.taxable_income = self.get_taxable_income()
         self.tax_amount = self.get_tax_amount()             
                
     def basic_rate(self):
-        if self.taxable_income < self.basic:
-            return self.taxable_income * 0.2
-        else:
-            return self.basic * 0.2
+        return self.taxable_income * 0.2
         
     def higher_rate(self):
         amount_above_basic_rate = self.taxable_income - self.basic
@@ -36,7 +36,10 @@ class TaxModel():
             return self.basic_rate()
 
     def get_taxable_income(self):
-        return self.salary - self.tax_free_amount
-    
+        if self.salary > self.tax_free_amount:
+            return self.salary - self.tax_free_amount
+        else:
+            return 0
+
     def get_income_after_tax(self):
         return self.salary - self.tax_amount

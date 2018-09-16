@@ -27,4 +27,3 @@ class StudentLoanModel():
             return self.payment_plan1_threshold
         else:
             return self.payment_plan2_threshold
-

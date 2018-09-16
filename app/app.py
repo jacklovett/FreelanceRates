@@ -34,7 +34,5 @@ def result():
 def static(filename):
     return static_file(filename, root=dir_path + '/static/')
 
-if __name__ == '__main__': 
-    run(host='localhost', port=5000, debug=True, reloader=True)
-
-         
+if __name__ == '__main__':
+    run(host='localhost', port=5000, debug=True, reloader=True)         
