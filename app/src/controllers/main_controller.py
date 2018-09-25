@@ -1,6 +1,6 @@
-from tax_model import TaxModel
-from nic_model import NicModel
-from student_loan_model import StudentLoanModel
+from tax_controller import TaxController
+from nic_controller import NicController
+from student_loan_controller import StudentLoanController
 
 class MainController():   
     """
@@ -23,8 +23,8 @@ class MainController():
         self.result['billable-hours'] = self.billable_hours
         self.result['time-off'] = self.time_off
 
-        tax_model = TaxModel(self.salary)
-        profit = tax_model.get_income_after_tax() 
+        tax_ctrl = TaxController(self.salary)
+        profit = tax_ctrl.get_income_after_tax() 
         self.calc_nic_results(profit)
        
         if self.has_student_loan:
@@ -33,17 +33,13 @@ class MainController():
         return self.result
      
     def calc_nic_results(self, profit):
-        nic_model = NicModel(profit)
-        self.result['nic_class'] = nic_model.get_nic_class()
-        self.result['nic_amount'] = nic_model.get_nic_amount()
+        nic_ctrl = NicController(profit)
+        self.result['nic_class'] = nic_ctrl.get_nic_class()
+        self.result['nic_amount'] = nic_ctrl.get_nic_amount()
 
     def calc_student_loan_results(self):
-        student_loan_model = StudentLoanModel(self.salary, self.plan)
+        student_loan_ctrl = StudentLoanController(self.salary, self.plan)
         self.result['has-student-loan'] = self.has_student_loan
         self.result['student-loan-plan'] = self.plan
-        self.result['payment_free_amount'] = student_loan_model.get_payment_free_amount()
-        self.result['student-loan-repayments'] = student_loan_model.calc_repayments()
-
-            
-
-
+        self.result['payment_free_amount'] = student_loan_ctrl.get_payment_free_amount()
+        self.result['student-loan-repayments'] = student_loan_ctrl.calc_repayments()

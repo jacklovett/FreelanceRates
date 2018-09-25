@@ -1,5 +1,5 @@
 # Student Loan Repayment Class
-class StudentLoanModel():    
+class StudentLoanController():    
     # payment free amounts
     payment_plan1_threshold = 18330
     payment_plan2_threshold = 25000

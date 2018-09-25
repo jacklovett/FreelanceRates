@@ -1,4 +1,4 @@
-class NicModel():
+class NicController():
     """
     National Insurance Contributions Class
     """  
