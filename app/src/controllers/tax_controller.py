@@ -1,8 +1,7 @@
 # Tax Class
-class TaxModel():
+class TaxController():
     """
-    Why am i using models? They should be controllers instead
-    remove models folder and only use controllers
+    See github project board
     """
     tax_free_amount = 11500
     # Boundaries
