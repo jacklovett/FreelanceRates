@@ -11,6 +11,7 @@ views_path = dir_path + '\\views'
 
 TEMPLATE_PATH.insert(0, views_path)
 
+sys.path.insert(0, src_path)
 sys.path.insert(0, src_path + '\\models')
 sys.path.insert(0, src_path + '\\controllers')
 sys.path.insert(0, test_path + '\\controllers')
