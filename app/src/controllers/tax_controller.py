@@ -1,7 +1,7 @@
-# Tax Class
-from app.src.commons import CommonsClass
-
 class TaxController():
+    """
+    Tax Calculations Class
+    """  
     tax_free_amount = 11500
     # Boundaries
     basic = 33500
@@ -34,7 +34,12 @@ class TaxController():
         return self.higher_rate() + additional_rate_amount  
      
     def get_taxable_income(self):
-        return CommonsClass.value_or_zero(self.salary, self.tax_free_amount)
+        return self.diff_or_zero(self.salary, self.tax_free_amount)
 
     def get_income_after_tax(self):
-        return CommonsClass.value_or_zero(self.salary, self.tax_amount)
+        return self.diff_or_zero(self.salary, self.tax_amount)
+
+    def diff_or_zero(self, val_1, val_2):
+        if val_1 > val_2:
+            return val_1 - val_2
+        return 0
