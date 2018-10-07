@@ -3,7 +3,7 @@ class NicController():
     National Insurance Contributions Class
     """  
     # Class2 Threshold
-    class2_threshold = 6205
+    class2_threshold = 6205 # change to contant value + 1 (when adding constants class)
     # Class4 Thresholds
     class4_threshold = 8424
     class4_higher_threshold = 46350
