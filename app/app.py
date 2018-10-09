@@ -9,12 +9,13 @@ src_path = dir_path + '\\src'
 test_path = dir_path + '\\test'
 views_path = dir_path + '\\views'
 
-TEMPLATE_PATH.insert(0, views_path)
+TEMPLATE_PATH.append(views_path)
 
-sys.path.insert(0, src_path)
-sys.path.insert(0, src_path + '\\models')
-sys.path.insert(0, src_path + '\\controllers')
-sys.path.insert(0, test_path + '\\controllers')
+sys.path.append(dir_path)
+sys.path.append(src_path)
+sys.path.append(src_path + '\\models')
+sys.path.append(src_path + '\\controllers')
+sys.path.append(test_path + '\\controllers')
 
 from request_model import RequestModel
 from main_controller import MainController

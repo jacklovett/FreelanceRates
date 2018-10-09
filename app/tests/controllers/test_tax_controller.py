@@ -14,6 +14,8 @@ class TestTaxController(TestCase):
     higher_amount = 150000 + tax_free_amount # higher boundary
     additional_rate_amount = 150000 + tax_free_amount + 1 # higher boundary + 1
 
+    zero_tax_ctrl = TaxController(1)
+    tax_ctrl = TaxController(taxable_income_salary)
     basic_tax_ctrl = TaxController(basic_amount)
     higher_tax_ctrl = TaxController(higher_amount)
     additional_rate_tax_ctrl = TaxController(additional_rate_amount)    
@@ -55,10 +57,9 @@ class TestTaxController(TestCase):
         """
         Test get_taxable_income() returns correct values
         """        
-        tax_controller = TaxController(self.taxable_income_salary)
-        taxable_income = tax_controller.get_taxable_income()
-        expected_taxable_income = self.taxable_income_salary - tax_controller.tax_free_amount
-  
+        taxable_income = self.tax_ctrl.get_taxable_income()
+        expected_taxable_income = self.taxable_income_salary - self.tax_ctrl.tax_free_amount
+        self.assertIsNotNone(taxable_income)
         self.assertEquals(taxable_income, expected_taxable_income)
     
     def test_get_taxable_amount_returns_0(self):
@@ -66,9 +67,26 @@ class TestTaxController(TestCase):
         Test get_taxable_income() returns 0 when salary is less than
         or equal to tax free amount
         """
-        tax_controller = TaxController(self.tax_free_amount)
-        taxable_income = tax_controller.get_taxable_income()
-        
+        taxable_income = self.zero_tax_ctrl.get_taxable_income()
+        self.assertIsNotNone(taxable_income)
+        self.assertEquals(taxable_income, 0)
+
+    def test_get_income_after_tax(self):
+        """
+        Test get_income_after_tax() returns correct values
+        """        
+        income = self.tax_ctrl.get_income_after_tax()
+        expected_income = self.taxable_income_salary - self.tax_ctrl.tax_amount
+        self.assertIsNotNone(income)
+        self.assertEquals(income, expected_income)
+
+    def test_get_income_after_tax_returns_0(self):
+        """
+        Test get_income_after_tax() returns 0 when salary is less than
+        or equal to tax amount
+        """        
+        taxable_income = self.zero_tax_ctrl.get_taxable_income()
+        self.assertIsNotNone(taxable_income)
         self.assertEquals(taxable_income, 0)
 
     def test_basic_rate(self):
@@ -97,4 +115,13 @@ class TestTaxController(TestCase):
         additional_rate = self.additional_rate_tax_ctrl.additional_rate()
         self.assertTrue(mock.called)
         self.assertNotEquals(additional_rate, None)
+
+    def test_diff_or_zero(self):
+        """
+        Test diff_or_zero calculation
+        """
+        diff_result = self.tax_ctrl.diff_or_zero(2,1)
+        zero_result = self.tax_ctrl.diff_or_zero(1,2)
+        self.assertEquals(diff_result, 1)
+        self.assertEquals(zero_result, 0)
         
