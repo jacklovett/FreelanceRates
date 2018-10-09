@@ -1,15 +1,16 @@
 from unittest import TestCase, mock
 from unittest.mock import patch
 from app.src.controllers.nic_controller import NicController
+from app.src.constants import Constants as constants
 
 class TestNicController(TestCase):
     """
     Test Class for NicController
     """
      # Class Thresholds
-    class2_amount = 6205
-    class4_amount = 8425
-    class4_higher_amount = 46351
+    class2_amount = constants.class2_threshold
+    class4_amount = constants.class4_threshold + 1
+    class4_higher_amount = constants.class4_higher_threshold + 1
 
     no_nic_ctrl = NicController(0)
     class2_ctrl = NicController(class2_amount)
@@ -59,7 +60,7 @@ class TestNicController(TestCase):
         when profit is below the higher threshold
         """
         nic_amount = self.class4_ctrl.get_class4_amount()
-        expected_amount = (self.class4_amount - self.class4_ctrl.class4_threshold) * 0.09
+        expected_amount = (self.class4_amount - constants.class4_threshold) * 0.09
         self.assertFalse(mock.called)
         self.assertNotEquals(nic_amount, None)
         self.assertEquals(nic_amount, expected_amount)

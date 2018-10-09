@@ -1,6 +1,7 @@
 from unittest import TestCase, mock
 from unittest.mock import patch
 from app.src.controllers.tax_controller import TaxController
+from app.src.constants import Constants as constants
 
 class TestTaxController(TestCase):    
     """
@@ -8,15 +9,12 @@ class TestTaxController(TestCase):
     Review salaries used for objects. get_tax_amount uses taxable income, not salary
     """
     taxable_income_salary = 12000
-    tax_free_amount = 11500 # use constants class
-    # use constants for these
-    basic_amount = 33500 # basic boundary
-    higher_amount = 150000 + tax_free_amount # higher boundary
-    additional_rate_amount = 150000 + tax_free_amount + 1 # higher boundary + 1
+    higher_amount = constants.higher + constants.tax_free_amount # higher boundary
+    additional_rate_amount = constants.higher + constants.tax_free_amount + 1 # higher boundary + 1
 
     zero_tax_ctrl = TaxController(1)
     tax_ctrl = TaxController(taxable_income_salary)
-    basic_tax_ctrl = TaxController(basic_amount)
+    basic_tax_ctrl = TaxController(constants.basic)
     higher_tax_ctrl = TaxController(higher_amount)
     additional_rate_tax_ctrl = TaxController(additional_rate_amount)    
 
@@ -58,7 +56,7 @@ class TestTaxController(TestCase):
         Test get_taxable_income() returns correct values
         """        
         taxable_income = self.tax_ctrl.get_taxable_income()
-        expected_taxable_income = self.taxable_income_salary - self.tax_ctrl.tax_free_amount
+        expected_taxable_income = self.taxable_income_salary - constants.tax_free_amount
         self.assertIsNotNone(taxable_income)
         self.assertEquals(taxable_income, expected_taxable_income)
     
