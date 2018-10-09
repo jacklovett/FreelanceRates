@@ -1,3 +1,4 @@
+from constants import Constants as constants
 # Student Loan Repayment Class
 class StudentLoanController():    
     # payment free amounts
@@ -11,10 +12,10 @@ class StudentLoanController():
     def calc_repayments(self):
         repayment_amount = 0
         try:
-            if self.plan == 1 and self.salary > self.payment_plan1_threshold:
-                repayment_amount = self.get_repayment_amount(self.payment_plan1_threshold)
-            if self.plan == 2 and self.salary > self.payment_plan2_threshold:
-                repayment_amount = self.get_repayment_amount(self.payment_plan2_threshold)                       
+            if self.plan == 1 and self.salary > constants.payment_plan1_threshold:
+                repayment_amount = self.get_repayment_amount(constants.payment_plan1_threshold)
+            if self.plan == 2 and self.salary > constants.payment_plan2_threshold:
+                repayment_amount = self.get_repayment_amount(constants.payment_plan2_threshold)                       
             return repayment_amount
         except:
             print("A problem occured when calculating repayment amount for plan ", self.plan)
@@ -24,6 +25,6 @@ class StudentLoanController():
 
     def get_payment_free_amount(self):
         if self.plan == 1:
-            return self.payment_plan1_threshold
+            return constants.payment_plan1_threshold
         else:
-            return self.payment_plan2_threshold
+            return constants.payment_plan2_threshold
