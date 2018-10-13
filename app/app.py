@@ -3,22 +3,14 @@ from bottle import route, run
 from bottle import request, post
 from bottle import template, TEMPLATE_PATH, static_file
 
-dir_path = os.path.dirname(os.path.abspath(__file__))
-# location paths
-src_path = dir_path + '\\src'
-test_path = dir_path + '\\test'
-views_path = dir_path + '\\views'
-
+dir_path = os.path.join(os.path.dirname(__file__), '..')
+sys.path.insert(0, os.path.abspath(dir_path))
+# views location
+views_path = dir_path + '\\app\\views'
 TEMPLATE_PATH.append(views_path)
 
-sys.path.append(dir_path)
-sys.path.append(src_path)
-sys.path.append(src_path + '\\models')
-sys.path.append(src_path + '\\controllers')
-sys.path.append(test_path + '\\controllers')
-
-from request_model import RequestModel
-from main_controller import MainController
+from app.src.models.request_model import RequestModel
+from app.src.controllers.main_controller import MainController
 
 @route('/')
 def home(): 
@@ -27,8 +19,8 @@ def home():
 @route('/result', method='POST')
 def result():
     requestModel = RequestModel(request.forms)
-    main_controller = MainController(requestModel) 
-    response = main_controller.calc_result()
+    mainController = MainController(requestModel) 
+    response = mainController.calc_result()
     return template(views_path + '/result.html', response=response)
 
 @route('/<filename:path>')
