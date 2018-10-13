@@ -1,7 +1,7 @@
 from unittest import TestCase, mock
 from unittest.mock import patch
-from app.src.controllers.nic_controller import NicController
 from app.src.constants import Constants as constants
+from app.src.controllers.nic_controller import NicController
 
 class TestNicController(TestCase):
     """

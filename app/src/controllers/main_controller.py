@@ -1,6 +1,7 @@
-from tax_controller import TaxController
-from nic_controller import NicController
-from student_loan_controller import StudentLoanController
+#from app.src.controllers import tax_controller, nic_controller, student_loan_controller
+from app.src.controllers.tax_controller import TaxController
+from app.src.controllers.nic_controller import NicController
+from app.src.controllers.student_loan_controller import StudentLoanController
 
 class MainController():   
     """

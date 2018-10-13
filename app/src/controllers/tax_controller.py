@@ -1,4 +1,4 @@
-from constants import Constants as constants
+from app.src.constants import Constants as constants
 
 class TaxController():
     """
