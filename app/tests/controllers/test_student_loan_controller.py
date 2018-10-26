@@ -24,6 +24,28 @@ class TestStudentLoanController(TestCase):
         self.assertEquals(no_plan_amount, 0)
         self.assertEquals(no_salary_amount, 0)
 
+    def test_calc_repayments_for_plan1(self):
+        """
+        Test that calc_repayments() returns the correct
+        amount for plan 1
+        """
+        plan_one_ctrl = StudentLoanController(20000, 1)
+        plan_one_amount = plan_one_ctrl.calc_repayments()
+
+        self.assertIsNotNone(plan_one_amount)
+        self.assertEqual(plan_one_amount, 12)
+
+    def test_calc_repayments_for_plan2(self):
+        """
+        Test that calc_repayments() returns the correct
+        amount for plan 2
+        """
+        plan_two_ctrl = StudentLoanController(26000, 2)
+        plan_two_amount = plan_two_ctrl.calc_repayments()
+
+        self.assertIsNotNone(plan_two_amount)
+        self.assertEqual(plan_two_amount, 7)        
+
     def test_calc_repayments_throws_exception(self):
         """
         Test that calc_repayments() handles exceptions
