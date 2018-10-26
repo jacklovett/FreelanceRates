@@ -1,6 +1,6 @@
 from unittest import TestCase, mock
 from unittest.mock import patch
-from app.src.constants import Constants as constants
+from app.src.commons import Commons as commons
 from app.src.controllers.nic_controller import NicController
 
 class TestNicController(TestCase):
@@ -8,9 +8,9 @@ class TestNicController(TestCase):
     Test Class for NicController
     """
      # Class Thresholds
-    class2_amount = constants.class2_threshold
-    class4_amount = constants.class4_threshold + 1
-    class4_higher_amount = constants.class4_higher_threshold + 1
+    class2_amount = commons.class2_threshold
+    class4_amount = commons.class4_threshold + 1
+    class4_higher_amount = commons.class4_higher_threshold + 1
 
     no_nic_ctrl = NicController(0)
     class2_ctrl = NicController(class2_amount)
@@ -40,7 +40,7 @@ class TestNicController(TestCase):
         """ 
         nic_amount = self.class2_ctrl.get_nic_amount()
         self.assertTrue(mock.called)
-        self.assertNotEquals(nic_amount, None)
+        self.assertIsNotNone(nic_amount)
         self.assertEquals(nic_amount, self.class2_ctrl.get_class2_amount())
 
     """
@@ -51,7 +51,7 @@ class TestNicController(TestCase):
     def test_get_nic_amount_class4(self, mock):
         nic_amount = self.class4_ctrl.get_nic_amount()
         self.assertTrue(mock.called)
-        self.assertNotEquals(nic_amount, None)
+        self.assertIsNotNone(nic_amount)
     
     @patch.object(class4_higher_rate_ctrl, 'get_class4_higher_amount') 
     def test_get_class4_amount(self, mock):
@@ -60,9 +60,9 @@ class TestNicController(TestCase):
         when profit is below the higher threshold
         """
         nic_amount = self.class4_ctrl.get_class4_amount()
-        expected_amount = (self.class4_amount - constants.class4_threshold) * 0.09
+        expected_amount = (self.class4_amount - commons.class4_threshold) * 0.09
         self.assertFalse(mock.called)
-        self.assertNotEquals(nic_amount, None)
+        self.assertIsNotNone(nic_amount)
         self.assertEquals(nic_amount, expected_amount)
     
     @patch.object(class4_higher_rate_ctrl, 'get_class4_higher_amount') 
@@ -73,7 +73,7 @@ class TestNicController(TestCase):
         """
         nic_amount = self.class4_higher_rate_ctrl.get_class4_amount()
         self.assertTrue(mock.called)
-        self.assertNotEquals(nic_amount, None)
+        self.assertIsNotNone(nic_amount)
         self.assertEquals(nic_amount, self.class4_higher_rate_ctrl.get_class4_higher_amount())
     
     def test_get_class4_higher_amount(self):
@@ -81,4 +81,4 @@ class TestNicController(TestCase):
         Test algorithm for get_class4_higher_amount()
         """
         nic_amount = self.class4_higher_rate_ctrl.get_class4_higher_amount()
-        self.assertEquals(nic_amount, 3413.36)    
+        self.assertEquals(nic_amount, 3413.36)

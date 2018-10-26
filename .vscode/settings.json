@@ -2,8 +2,11 @@
     "python.unitTest.nosetestArgs": [
         "app"
     ],
-    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
     "python.unitTest.unittestEnabled": false,
-    "python.unitTest.nosetestsEnabled": true,
-    "python.pythonPath": "C:\\Program Files\\Python37-32\\python.exe"
+    "python.unitTest.nosetestsEnabled": false,
+    "python.pythonPath": "C:\\Users\\jackl\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "python.unitTest.pyTestArgs": [
+        "app"
+    ]
 }
