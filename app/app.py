@@ -7,6 +7,7 @@ dir_path = os.path.join(os.path.dirname(__file__), '..')
 sys.path.insert(0, os.path.abspath(dir_path))
 # views location
 views_path = dir_path + '\\app\\views'
+
 TEMPLATE_PATH.append(views_path)
 
 from app.src.models.request_model import RequestModel
@@ -25,7 +26,7 @@ def result():
 
 @route('/<filename:path>')
 def static(filename):
-    return static_file(filename, root=dir_path + '/static/')
+    return static_file(filename, root=dir_path + '\\app\\static')
 
 if __name__ == '__main__':
     run(host='localhost', port=5000, debug=True, reloader=True)         

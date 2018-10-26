@@ -1,4 +1,4 @@
-from app.src.constants import Constants as constants
+from app.src.commons import Commons as commons
 class NicController():
     """
     National Insurance Contributions Class
@@ -7,9 +7,9 @@ class NicController():
         self.profit = profit        
 
     def get_nic_class(self):
-        if constants.class4_threshold <= self.profit:
+        if commons.class4_threshold <= self.profit:
             return 4
-        elif constants.class2_threshold <= self.profit:
+        elif commons.class2_threshold <= self.profit:
             return 2
         else:
             return 0
@@ -24,15 +24,15 @@ class NicController():
     
     def get_class2_amount(self):
         # is this correct? should it be per week works excluding holiday taken?
-        return constants.per_week_value * 52
+        return commons.per_week_value * 52
 
     def get_class4_amount(self):
-        if constants.class4_higher_threshold <= self.profit:
+        if commons.class4_higher_threshold <= self.profit:
             return self.get_class4_higher_amount()                      
-        return (self.profit - constants.class4_threshold) * 0.09
+        return (self.profit - commons.class4_threshold) * 0.09
 
     def get_class4_higher_amount(self):
-        amount_above_higher_threshold = (self.profit - constants.class4_higher_threshold) * 0.02
-        amount_below_higher_threshold = (constants.class4_higher_threshold - constants.class4_threshold) * 0.09
+        amount_above_higher_threshold = commons.diff_or_zero(self.profit, commons.class4_higher_threshold) * 0.02
+        amount_below_higher_threshold = commons.diff_or_zero(commons.class4_higher_threshold, commons.class4_threshold) * 0.09
         nic_amount = amount_below_higher_threshold + amount_above_higher_threshold
         return round(nic_amount, 2)

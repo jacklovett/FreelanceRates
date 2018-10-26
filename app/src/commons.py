@@ -1,10 +1,15 @@
-class Constants:
+class Commons:
+    """
+    Class to group together common methods and variables that can
+    be used throughout the application
+    """
+    # Constants
 
     # TaxController    
-    tax_free_amount = 11500
+    tax_free_amount = 11850
     # Boundaries
-    basic = 33500
-    higher = 150000
+    higher_rate_threshold = 34500
+    additional_rate_threshold = 150000
 
     # NicController
     # Thresholds
@@ -20,3 +25,9 @@ class Constants:
     # payment free amounts
     payment_plan1_threshold = 18330
     payment_plan2_threshold = 25000
+
+    @staticmethod
+    def diff_or_zero(val_1, val_2):
+        if val_1 > val_2:
+            return val_1 - val_2
+        return 0
